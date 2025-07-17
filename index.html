@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melt & Munch - Bakery & Desserts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-bg: #1a1a1a;
+            --secondary-bg: #222222;
+            --gold-accent: #FFD700;
+            --gold-light: rgba(255, 215, 0, 0.7);
+            --text-light: #ffffff;
+            --text-gray: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(26, 26, 26, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 40px;
+            background-color: rgba(26, 26, 26, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold-accent);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            position: relative;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold-accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-gray);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--gold-accent);
+            color: var(--primary-bg);
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold-accent);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--gold-accent);
+            transform: translateY(-3px);
+        }
+
+        .small-btn {
+            padding: 8px 20px;
+            font-size: 14px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-subtitle {
+            color: var(--gold-accent);
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: var(--gold-accent);
+            bottom: -10px;
+            left: 0;
+        }
+
+        /* About Section */
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            padding: 100px 40px;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-text {
+            margin-bottom: 30px;
+            color: var(--text-gray);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .about-image-collage {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .about-image-collage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image-collage img:hover {
+            transform: scale(1.03);
+        }
+
+        .about-image-collage img:nth-child(1) {
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+            height: 100%;
+        }
+
+        .about-image-collage img:nth-child(2) {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+
+        .about-image-collage img:nth-child(3) {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+        }
+
+        /* Strengths Section */
+        .strengths-section {
+            background-color: var(--secondary-bg);
+            text-align: center;
+        }
+
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .strength-item {
+            padding: 30px;
+            background-color: rgba(255, 215, 0, 0.05);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .strength-item:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+
+        .icon-gold {
+            color: var(--gold-accent);
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .strength-item h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .strength-item p {
+            color: var(--text-gray);
+            font-size: 15px;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            text-align: center;
+        }
+
+        .menu-category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .menu-tab {
+            padding: 10px 25px;
+            background-color: transparent;
+            border: 2px solid var(--gold-accent);
+            color: var(--gold-accent);
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-tab:hover,
+        .menu-tab.active {
+            background-color: var(--gold-accent);
+            color: var(--primary-bg);
+        }
+
+        .menu-items-container {
+            min-height: 500px;
+        }
+
+        .menu-items {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-items.active {
+            display: grid;
+        }
+
+        .menu-item-card {
+            display: flex;
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-item-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .item-details {
+            padding: 20px;
+            text-align: left;
+            flex: 1;
+        }
+
+        .item-details h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .item-details p {
+            color: var(--text-gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: var(--gold-accent);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .new-tag {
+            background-color: var(--gold-accent);
+            color: var(--primary-bg);
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+
+        .special-tag {
+            background-color: #e74c3c;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: var(--secondary-bg);
+            text-align: center;
+        }
+
+        .testimonial-carousel {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-item {
+            background-color: var(--primary-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .testimonial-item p {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: var(--text-gray);
+            position: relative;
+        }
+
+        .quote-icon {
+            color: var(--gold-light);
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .author-info img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--gold-accent);
+        }
+
+        .author-info span {
+            font-weight: 600;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: var(--gold-accent);
+            transform: scale(1.2);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            gap: 50px;
+            padding: 100px 40px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: 100%;
+        }
+
+        /* Footer */
+        .footer-section {
+            background-color: #111;
+            padding: 80px 40px 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold-accent);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            transition: color 0.3s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--gold-accent);
+        }
+
+        .social-links-footer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-links-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--secondary-bg);
+            color: var(--gold-accent);
+            transition: all 0.3s ease;
+        }
+
+        .social-links-footer a:hover {
+            background-color: var(--gold-accent);
+            color: var(--primary-bg);
+            transform: translateY(-5px);
+        }
+
+        .newsletter-signup {
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .newsletter-signup h4 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .newsletter-signup form {
+            display: flex;
+        }
+
+        .newsletter-signup input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            background-color: #333;
+            color: white;
+        }
+
+        .newsletter-signup button {
+            padding: 12px 25px;
+            background-color: var(--gold-accent);
+            color: var(--primary-bg);
+            border: none;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-signup button:hover {
+            background-color: #e6c200;
+        }
+
+        .copyright {
+            color: var(--text-gray);
+            font-size: 14px;
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+
+            .about-section,
+            .contact-section {
+                flex-direction: column;
+            }
+
+            .about-image-collage {
+                margin-top: 50px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--primary-bg);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hamburger-menu {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item-card {
+                flex-direction: column;
+            }
+
+            .menu-item-card img {
+                width: 100%;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .menu-category-tabs {
+                gap: 10px;
+            }
+
+            .menu-tab {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+
+            .newsletter-signup form {
+                flex-direction: column;
+            }
+
+            .newsletter-signup input {
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-signup button {
+                border-radius: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="hero-section" id="home">
+        <div class="navbar">
+            <div class="logo">MELT & MUNCH</div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#menu">Menu</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 data-aos="fade-up" data-aos-duration="1200">Where Every Bite Melts Your Heart</h1>
+            <p data-aos="fade-up" data-aos-delay="300" data-aos-duration="1200">Artisan bakery crafting delightful
+                sweets, savory treats, and perfect coffee pairings</p>
+            <a href="#menu" class="btn" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1200">EXPLORE OUR
+                MENU</a>
+        </div>
+    </header>
+
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <p class="section-subtitle" data-aos="fade-up">OUR STORY</p>
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Every Flavor Tells a Story</h2>
+            <p class="about-text" data-aos="fade-up" data-aos-delay="200">
+                At Melt & Munch, our journey began with a simple passion for creating moments of joy through baking.
+                Founded in 2015, we've grown from a small home bakery to Karachi's favorite spot for artisanal treats.
+                Each recipe in our kitchen tells a story - of tradition perfected over time, of innovation that
+                surprises the palate, and of love that goes into every creation.
+            </p>
+            <p class="about-text" data-aos="fade-up" data-aos-delay="250">
+                Our bakers combine time-honored techniques with modern creativity to bring you an unforgettable
+                experience. From our signature Chocolate Fudge Cake to our crispy Chicken Samosas, every item is made
+                fresh daily using premium ingredients.
+            </p>
+            <a href="#contact" class="btn" data-aos="fade-up" data-aos-delay="300">VISIT US TODAY</a>
+        </div>
+        <div class="about-image-collage" data-aos="fade-left" data-aos-duration="1000">
+            <img src="bakery.jpg" alt="Bakery Interior">
+            <img src="cakedecor.jpg" alt="Baker Decorating Cake">
+            <img src="internalbak.jpg" alt="Fresh Baked Croissants">
+        </div>
+    </section>
+
+    <section class="strengths-section">
+        <div class="container">
+            <p class="section-subtitle" data-aos="fade-up">WHY CHOOSE US</p>
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Our Baking Promises</h2>
+            <div class="strengths-grid">
+                <div class="strength-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-seedling icon-gold"></i>
+                    <h3>Premium Ingredients</h3>
+                    <p>We source only the finest, freshest ingredients for all our baked goods and beverages.</p>
+                </div>
+                <div class="strength-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-bread-slice icon-gold"></i>
+                    <h3>Daily Fresh Baking</h3>
+                    <p>Everything is made fresh each morning - we never serve day-old products.</p>
+                </div>
+                <div class="strength-item" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-heart icon-gold"></i>
+                    <h3>Made With Love</h3>
+                    <p>Each item is crafted with care and attention to detail by our skilled bakers.</p>
+                </div>
+                <div class="strength-item" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-gem icon-gold"></i>
+                    <h3>Signature Recipes</h3>
+                    <p>Our unique recipes have been perfected over years to deliver exceptional taste.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <p class="section-subtitle" data-aos="fade-up">OUR DELIGHTS</p>
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Our Delicious Menu</h2>
+
+            <div class="menu-category-tabs" data-aos="fade-up" data-aos-delay="200">
+                <button class="menu-tab active" data-category="cakes">Cakes</button>
+                <button class="menu-tab" data-category="cupcakes">Cupcakes</button>
+                <button class="menu-tab" data-category="sandwiches">Sandwiches</button>
+                <button class="menu-tab" data-category="snacks">Fried Snacks</button>
+                <button class="menu-tab" data-category="drinks">Drinks</button>
+                <button class="menu-tab" data-category="cookies">Cookies</button>
+                <button class="menu-tab" data-category="combos">Combo Deals</button>
+            </div>
+
+            <div class="menu-items-container">
+                <!-- Cakes Category -->
+                <div class="menu-items active" data-category="cakes">
+                    <div class="menu-item-card" data-aos="fade-right">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Chocolate Fudge Cake">
+                        <div class="item-details">
+                            <h3>Chocolate Fudge Cake <span class="new-tag">BESTSELLER</span></h3>
+                            <p>Rich, moist chocolate cake with layers of fudge frosting and chocolate ganache.</p>
+                            <span class="price">Rs. 1,200 (Full)</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card" data-aos="fade-left" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Red Velvet Cake">
+                        <div class="item-details">
+                            <h3>Red Velvet Cake</h3>
+                            <p>Classic red velvet with cream cheese frosting, perfect for special occasions.</p>
+                            <span class="price">Rs. 1,350 (Full)</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card" data-aos="fade-right" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1540337706094-da10342c93d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Black Forest Cake">
+                        <div class="item-details">
+                            <h3>Black Forest Cake</h3>
+                            <p>Layers of chocolate cake, whipped cream, and cherries with chocolate shavings.</p>
+                            <span class="price">Rs. 1,400 (Full)</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card" data-aos="fade-left" data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Pineapple Cream Cake">
+                        <div class="item-details">
+                            <h3>Pineapple Cream Cake</h3>
+                            <p>Light sponge cake with pineapple filling and whipped cream frosting.</p>
+                            <span class="price">Rs. 1,250 (Full)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cupcakes Category -->
+                <div class="menu-items" data-category="cupcakes">
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Nutella Lava Cupcakes">
+                        <div class="item-details">
+                            <h3>Nutella Lava Cupcakes <span class="new-tag">NEW</span></h3>
+                            <p>Chocolate cupcakes with a molten Nutella center, topped with hazelnut frosting.</p>
+                            <span class="price">Rs. 180 each</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Red Velvet Cupcakes">
+                        <div class="item-details">
+                            <h3>Red Velvet Cupcakes</h3>
+                            <p>Classic red velvet cupcakes with cream cheese frosting.</p>
+                            <span class="price">Rs. 150 each</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Vanilla Swirl Muffins">
+                        <div class="item-details">
+                            <h3>Vanilla Swirl Muffins</h3>
+                            <p>Soft vanilla muffins with a sweet vanilla glaze swirl.</p>
+                            <span class="price">Rs. 120 each</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Oreo Crunch Cupcakes">
+                        <div class="item-details">
+                            <h3>Oreo Crunch Cupcakes</h3>
+                            <p>Chocolate cupcakes with Oreo pieces and cookies & cream frosting.</p>
+                            <span class="price">Rs. 160 each</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sandwiches Category -->
+                <div class="menu-items" data-category="sandwiches">
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Chicken Sandwich">
+                        <div class="item-details">
+                            <h3>Chicken Sandwich</h3>
+                            <p>Grilled chicken breast with lettuce, tomato, and our special sauce on artisan bread.</p>
+                            <span class="price">Rs. 350</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Egg Sandwich">
+                        <div class="item-details">
+                            <h3>Egg Sandwich</h3>
+                            <p>Scrambled eggs with cheese, served on toasted multigrain bread.</p>
+                            <span class="price">Rs. 250</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Grilled Veg Sandwich">
+                        <div class="item-details">
+                            <h3>Grilled Veg Sandwich</h3>
+                            <p>Assorted grilled vegetables with hummus on ciabatta bread.</p>
+                            <span class="price">Rs. 300</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Mini Chicken Pizza">
+                        <div class="item-details">
+                            <h3>Mini Chicken Pizza</h3>
+                            <p>Personal-sized pizza with chicken, cheese, and our special tomato sauce.</p>
+                            <span class="price">Rs. 400</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fried Snacks Category -->
+                <div class="menu-items" data-category="snacks">
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Chicken Samosa">
+                        <div class="item-details">
+                            <h3>Chicken Samosa</h3>
+                            <p>Crispy pastry filled with spiced chicken and vegetables.</p>
+                            <span class="price">Rs. 120 each</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Cheese Roll">
+                        <div class="item-details">
+                            <h3>Cheese Roll</h3>
+                            <p>Flaky pastry roll filled with melted cheese blend.</p>
+                            <span class="price">Rs. 100 each</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Chicken Reshmi Kabab Roll">
+                        <div class="item-details">
+                            <h3>Chicken Reshmi Kabab Roll</h3>
+                            <p>Soft wrap with tender chicken kabab, mint chutney, and onions.</p>
+                            <span class="price">Rs. 320</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Spring Roll (Veg)">
+                        <div class="item-details">
+                            <h3>Spring Roll (Veg)</h3>
+                            <p>Crispy rolls filled with fresh vegetables and served with sweet chili sauce.</p>
+                            <span class="price">Rs. 90 each</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drinks Category -->
+                <div class="menu-items" data-category="drinks">
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Hot Cappuccino">
+                        <div class="item-details">
+                            <h3>Hot Cappuccino</h3>
+                            <p>Espresso with steamed milk and a thick layer of foam.</p>
+                            <span class="price">Rs. 300</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Cold Coffee">
+                        <div class="item-details">
+                            <h3>Cold Coffee</h3>
+                            <p>Chilled coffee with milk, cream, and ice, sweetened to perfection.</p>
+                            <span class="price">Rs. 350</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Orange Juice">
+                        <div class="item-details">
+                            <h3>Orange Juice</h3>
+                            <p>Freshly squeezed orange juice, served chilled.</p>
+                            <span class="price">Rs. 250</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Strawberry Shake">
+                        <div class="item-details">
+                            <h3>Strawberry Shake</h3>
+                            <p>Creamy milkshake made with fresh strawberries and ice cream.</p>
+                            <span class="price">Rs. 400</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cookies Category -->
+                <div class="menu-items" data-category="cookies">
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Chocolate Chip Cookies">
+                        <div class="item-details">
+                            <h3>Chocolate Chip Cookies</h3>
+                            <p>Classic cookies loaded with chocolate chips, crispy edges with a chewy center.</p>
+                            <span class="price">Rs. 100 each</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Almond Rusk">
+                        <div class="item-details">
+                            <h3>Almond Rusk</h3>
+                            <p>Crispy, twice-baked bread slices topped with almonds.</p>
+                            <span class="price">Rs. 80 each</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Elaichi Toast">
+                        <div class="item-details">
+                            <h3>Elaichi Toast</h3>
+                            <p>Cardamom-infused sweet toast slices, perfect with tea.</p>
+                            <span class="price">Rs. 70 each</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Fruit Biscotti">
+                        <div class="item-details">
+                            <h3>Fruit Biscotti</h3>
+                            <p>Italian almond biscuits with dried fruits, perfect for dipping.</p>
+                            <span class="price">Rs. 120 each</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Combo Deals Category -->
+                <div class="menu-items" data-category="combos">
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Sweet Treat Combo">
+                        <div class="item-details">
+                            <h3>Sweet Treat Combo <span class="new-tag special-tag">POPULAR</span></h3>
+                            <p>Chocolate Fudge Cake Slice, Oreo Cupcake, Cold Coffee, Chocolate Chip Cookie</p>
+                            <span class="price">Rs. 950 (Save Rs. 250)</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Birthday Bash Box">
+                        <div class="item-details">
+                            <h3>Birthday Bash Box</h3>
+                            <p>Mini Red Velvet Cake, 2 Nutella Cupcakes, Chicken Sandwich, 1 Can Soft Drink</p>
+                            <span class="price">Rs. 1,600 (Save Rs. 350)</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Lunch Break Combo">
+                        <div class="item-details">
+                            <h3>Lunch Break Combo</h3>
+                            <p>Grilled Veg Sandwich, Chicken Samosa, Orange Juice, Cookie Pack</p>
+                            <span class="price">Rs. 850 (Save Rs. 200)</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-card">
+                        <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Evening Cravings">
+                        <div class="item-details">
+                            <h3>Evening Cravings</h3>
+                            <p>Mini Pizza, Cheese Roll, Cappuccino, Rusk Slice (Free!)</p>
+                            <span class="price">Rs. 1,000 (Save Rs. 300)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <p class="section-subtitle" data-aos="fade-up">WHAT OUR CLIENTS SAY</p>
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Customer Reviews</h2>
+            <div class="testimonial-carousel" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-item">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p>"Melt & Munch has become our family's favorite spot! Their Chocolate Fudge Cake is to die for,
+                        and the Chicken Samosas are the perfect savory snack. The quality is consistently excellent, and
+                        the staff is always welcoming."</p>
+                    <div class="author-info">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Aisha Khan">
+                        <span>— Aisha Khan</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p>"I ordered the Birthday Bash Box for my daughter's party, and it was a huge hit! The mini Red
+                        Velvet Cake was beautiful and delicious, and the Nutella Cupcakes disappeared in minutes. Will
+                        definitely order again for our next celebration."</p>
+                    <div class="author-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Bilal Ahmed">
+                        <span>— Bilal Ahmed</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p>"As a coffee lover, I appreciate their perfectly brewed cappuccino. Paired with their Almond
+                        Croissant, it's my ideal breakfast. The ambiance is cozy, and the service is always with a
+                        smile. Highly recommend!"</p>
+                    <div class="author-info">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sana Ali">
+                        <span>— Sana Ali</span>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-dots"></div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-info" data-aos="fade-right" data-aos-duration="1000">
+                <p class="section-subtitle">GET IN TOUCH</p>
+                <h2 class="section-title">Visit Us or Place an Order</h2>
+                <p><i class="fas fa-map-marker-alt icon-gold"></i> 123 Bakery Street, Karachi, Pakistan</p>
+                <p><i class="fas fa-envelope icon-gold"></i> orders@meltmunch.com</p>
+                <p><i class="fas fa-phone-alt icon-gold"></i> +92 312 3456789 (For Custom Orders & Inquiries)</p>
+                <p><i class="fas fa-clock icon-gold"></i> Open: 08:00 am - 10:00 pm (Mon-Sat), 09:00 am - 08:00 pm (Sun)
+                </p>
+                <a href="https://maps.google.com/?q=123+Bakery+Street+Karachi" target="_blank"
+                    class="btn small-btn">VIEW ON MAP</a>
+
+                <div class="social-links" style="margin-top: 30px;">
+                    <h3 style="margin-bottom: 15px;">Follow Us</h3>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="contact-form" data-aos="fade-left" data-aos-duration="1000">
+                <h3>Send Us a Message / Custom Order Inquiry</h3>
+                <form action="#" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="tel" name="phone" placeholder="Phone Number">
+                    <textarea name="message" rows="5"
+                        placeholder="Your message or custom order details (date, quantity, special requests)..."
+                        required></textarea>
+                    <button type="submit" class="btn">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-logo">MELT & MUNCH</div>
+            <div class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#menu">Menu</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="social-links-footer">
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="newsletter-signup">
+                <h4>Get News & Special Offers!</h4>
+                <form action="#">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">SUBSCRIBE</button>
+                </form>
+            </div>
+            <p class="copyright">&copy; 2023 Melt & Munch. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            once: true,
+            mirror: false,
+            duration: 1000,
+            easing: 'ease-out-cubic',
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Menu Tabs functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.menu-tab');
+            const menuItemsContainers = document.querySelectorAll('.menu-items');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const category = tab.dataset.category;
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    menuItemsContainers.forEach(container => {
+                        if (container.dataset.category === category) {
+                            container.classList.add('active');
+                        } else {
+                            container.classList.remove('active');
+                        }
+                    });
+                    AOS.refresh();
+                });
+            });
+
+            // Testimonial Carousel
+            const testimonialCarousel = document.querySelector('.testimonial-carousel');
+            const testimonialItems = document.querySelectorAll('.testimonial-item');
+            const carouselDotsContainer = document.querySelector('.carousel-dots');
+            let currentIndex = 0;
+
+            if (testimonialItems.length > 1) {
+                // Create dots
+                testimonialItems.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => showTestimonial(index));
+                    carouselDotsContainer.appendChild(dot);
+                });
+
+                function showTestimonial(index) {
+                    testimonialItems.forEach(item => item.style.display = 'none');
+                    testimonialItems[index].style.display = 'block';
+
+                    document.querySelectorAll('.carousel-dots .dot').forEach(dot => dot.classList.remove('active'));
+                    carouselDotsContainer.children[index].classList.add('active');
+                    currentIndex = index;
+                }
+
+                // Auto-advance
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % testimonialItems.length;
+                    showTestimonial(currentIndex);
+                }, 5000);
+
+                showTestimonial(0);
+            } else {
+                carouselDotsContainer.style.display = 'none';
+            }
+
+            // Hamburger menu toggle
+            const hamburger = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on links
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
